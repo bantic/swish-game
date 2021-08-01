@@ -1,0 +1,11 @@
+<div class="card {{if this.selected "selected"}}" ...attributes {{on "click" this.toggleSelect}}>
+  {{#each this.icons as |icon|}}
+    <div class="icon-slot grid-{{icon.col}}-{{icon.row}}">
+      {{#if (eq icon.type "hoop")}}
+        <Icon::Hoop class="{{icon.color}}" />
+      {{else if (eq icon.type "dot")}}
+        <Icon::Dot class="{{icon.color}}" />
+      {{/if}}
+    </div>
+  {{/each}}
+</div>

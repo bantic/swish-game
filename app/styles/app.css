@@ -1,0 +1,91 @@
+.game {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.card {
+  max-width: 300px;
+  min-width: 80px;
+  aspect-ratio: 2.5 / 3.5;
+  border: 1px solid black;
+  border-radius: 5%;
+  cursor: pointer;
+  margin: 0.5em;
+
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(4, 1fr);
+}
+
+.card.selected {
+  box-shadow: 0px 0px 10px 2px #476649;
+}
+
+.card .icon-slot {
+  min-width: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.icon.orange {
+  fill: orange;
+}
+.icon.purple {
+  fill: purple;
+}
+.icon.green {
+  fill: green;
+}
+.icon.blue {
+  fill: blue;
+}
+
+.card .icon-slot.grid-1-1 {
+  grid-column-start: 1;
+  grid-row-start: 1;
+}
+.card .icon-slot.grid-2-1 {
+  grid-column-start: 2;
+  grid-row-start: 1;
+}
+.card .icon-slot.grid-3-1 {
+  grid-column-start: 3;
+  grid-row-start: 1;
+}
+.card .icon-slot.grid-1-2 {
+  grid-column-start: 1;
+  grid-row-start: 2;
+}
+.card .icon-slot.grid-2-2 {
+  grid-column-start: 2;
+  grid-row-start: 2;
+}
+.card .icon-slot.grid-3-2 {
+  grid-column-start: 3;
+  grid-row-start: 2;
+}
+.card .icon-slot.grid-1-3 {
+  grid-column-start: 1;
+  grid-row-start: 3;
+}
+.card .icon-slot.grid-2-3 {
+  grid-column-start: 2;
+  grid-row-start: 3;
+}
+.card .icon-slot.grid-3-3 {
+  grid-column-start: 3;
+  grid-row-start: 3;
+}
+.card .icon-slot.grid-1-4 {
+  grid-column-start: 1;
+  grid-row-start: 4;
+}
+.card .icon-slot.grid-2-4 {
+  grid-column-start: 2;
+  grid-row-start: 4;
+}
+.card .icon-slot.grid-3-4 {
+  grid-column-start: 3;
+  grid-row-start: 4;
+}
