@@ -62,10 +62,11 @@
     "qunit": "^2.15.0",
     "qunit-dom": "^1.6.0"
   },
-  "engines": {
-    "node": "10.* || >= 12"
-  },
   "ember": {
     "edition": "octane"
+  },
+  "volta": {
+    "node": "14.17.5",
+    "yarn": "1.22.11"
   }
 }
