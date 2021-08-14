@@ -1,5 +1,5 @@
 <div class="card {{if this.selected "selected"}}" ...attributes {{on "click" this.toggleSelect}}>
-  {{#each this.icons as |icon|}}
+  {{#each this.card.icons as |icon|}}
     <div class="icon-slot grid-{{icon.col}}-{{icon.row}}">
       {{#if (eq icon.type "hoop")}}
         <Icon::Hoop class="{{icon.color}}" />

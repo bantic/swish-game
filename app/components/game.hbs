@@ -1,11 +1,8 @@
+<h1>Score: {{this.score}}</h1>
+<button type="button" {{on "click" this.submit}}>Submit</button>
+<button type="button" {{on "click" this.dealMore}}>Deal 1 More</button>
 <div class="game">
-  <Card />
-  <Card />
-  <Card />
-  <Card />
-  <Card />
-  <Card />
-  <Card />
-  <Card />
-  <Card />
+  {{#each this.cards as |card|}}
+  <Card @card={{card}} @onSelect={{this.onSelect}} />
+  {{/each}}
 </div>
