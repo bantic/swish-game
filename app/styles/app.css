@@ -28,6 +28,11 @@
   align-items: center;
 }
 
+.icon {
+  min-width: 50px;
+  min-height: 50px;
+}
+
 .icon.orange {
   fill: orange;
 }
