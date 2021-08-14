@@ -1,6 +1,7 @@
 .game {
   display: flex;
   flex-wrap: wrap;
+  justify-content: center;
 }
 
 .card {
@@ -15,6 +16,21 @@
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   grid-template-rows: repeat(4, 1fr);
+
+  transition: transform 0.5s;
+  transform: scaleX(1) scaleY(1);
+}
+
+.card.flip-v {
+  transform: scaleX(-1) scaleY(1);
+}
+
+.card.flip-h {
+  transform: scaleX(1) scaleY(-1);
+}
+
+.card.flip-v.flip-h {
+  transform: scaleX(-1) scaleY(-1);
 }
 
 .card.selected {

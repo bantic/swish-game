@@ -1,4 +1,4 @@
-<div class="card {{if this.selected "selected"}}" ...attributes {{on "click" this.toggleSelect}}>
+<div class="card {{if this.selected "selected"}} {{if this.flipV "flip-v"}} {{if this.flipH "flip-h"}}" ...attributes {{on "click" this.handleClick}}>
   {{#each this.card.icons as |icon|}}
     <div class="icon-slot grid-{{icon.col}}-{{icon.row}}">
       {{#if (eq icon.type "hoop")}}
