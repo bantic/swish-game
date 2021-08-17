@@ -4,14 +4,16 @@
   justify-content: center;
 }
 
+.controls {
+  margin-bottom: 2em;
+}
+
 .card {
-  max-width: 300px;
-  min-width: 80px;
   aspect-ratio: 2.5 / 3.5;
   border: 1px solid black;
   border-radius: 5%;
   cursor: pointer;
-  margin: 0.5em;
+  margin: 0.1em;
 
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -38,7 +40,7 @@
 }
 
 .card .icon-slot {
-  min-width: 30px;
+  width: 28px;
   display: flex;
   justify-content: center;
   align-items: center;

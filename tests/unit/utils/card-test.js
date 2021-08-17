@@ -132,7 +132,6 @@ module('Unit | Utility | card', function () {
   });
 
   test('#match with more than 2 cards', function (assert) {
-    debugger;
     let cards = [
       new Card([
         new Icon({ col: 2, row: 1 }, 'hoop'),
