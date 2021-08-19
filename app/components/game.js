@@ -3,34 +3,18 @@ import { action } from '@ember/object';
 import Card from '../utils/card';
 import { assert } from '@ember/debug';
 import { tracked } from '@glimmer/tracking';
-import combination from '../utils/combination';
-
-function getAllMatches(cards) {
-  let min = 2;
-  let max = 5;
-
-  let matchGroups = [];
-
-  for (let i = min; i <= max; i++) {
-    let size = i;
-    let groups = combination(size, cards);
-    matchGroups = matchGroups.concat(
-      groups.filter((group) => Card.match(group))
-    );
-  }
-  return matchGroups;
-}
+import { findAllMatches } from '../utils/find-all-matches';
 
 export default class GameComponent extends Component {
   @tracked score = 0;
   @tracked cards = [];
+  @tracked matches;
   selection = [];
   MIN_CARDS = 16;
 
   constructor(owner, args) {
     super(owner, args);
-    this.cards = new Array(this.MIN_CARDS).fill(0).map(() => Card.random());
-    // let matches = getAllMatches(this.cards);
+    this.deal();
   }
 
   clearSelection() {
@@ -38,7 +22,9 @@ export default class GameComponent extends Component {
     this.selection = [];
   }
 
-  redeal() {
+  deal() {
+    // TODO something about using cards here causes a computation deprecation warning
+    // about changing a value after it was used for computation
     if (this.cards.length >= this.MIN_CARDS) {
       return;
     } else {
@@ -48,12 +34,11 @@ export default class GameComponent extends Component {
           .fill(0)
           .map(() => Card.random()),
       ];
+      console.time('find-all-matches');
+      let matches = findAllMatches(this.cards);
+      console.timeEnd('find-all-matches');
+      this.matches = matches;
     }
-  }
-
-  @action
-  dealMore() {
-    this.cards = [...this.cards, Card.random()];
   }
 
   @action
@@ -61,7 +46,7 @@ export default class GameComponent extends Component {
     if (Card.match(this.selection)) {
       this.score += this.selection.length;
       this.clearSelection();
-      this.redeal();
+      this.deal();
     } else {
       this.score -= 1;
     }
