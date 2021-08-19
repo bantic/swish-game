@@ -4,6 +4,37 @@ const MAX_COL = 3;
 const MAX_ROW = 4;
 const ALL_TYPES = ['hoop', 'dot'];
 
+function count(arr, item) {
+  return arr.filter((i) => i === item).length;
+}
+
+// count up the number of dots and hoops by color,
+// ensure they match up. If there are 2 green dots and no green hoops,
+// for instance, it cannot be a match
+// This is used to speed up the match-checking by
+// quickly discarding groups of cards that could never
+// match, in any orientation
+export function couldBeMatch(cards) {
+  let icons = cards.flatMap((card) => card.icons);
+  let colors = {};
+  icons.forEach((icon) => {
+    let { color, type } = icon;
+    if (!colors[color]) {
+      colors[color] = [];
+    }
+    colors[color].push(type);
+  });
+
+  for (let [color, types] of Object.entries(colors)) {
+    let dotCount = count(types, 'dot');
+    let hoopCount = count(types, 'hoop');
+    if (dotCount !== hoopCount) {
+      return false;
+    }
+  }
+  return true;
+}
+
 function getColor(col, row) {
   if ([1, 3].includes(col) && [2, 3].includes(row)) {
     return 'orange';
@@ -94,6 +125,10 @@ export class Icon {
     this.type = type;
   }
 
+  toString() {
+    return `c${this.col}-r${this.row}-color${this.color}-type${this.type}`;
+  }
+
   get col() {
     return this.position.col;
   }
@@ -113,6 +148,12 @@ export default class Card {
     this.orientation = orientation;
   }
 
+  toString() {
+    return `icons-${this.icons
+      .map((i) => i.toString())
+      .join('-')}--orientation-v${this.orientation.v}-h${this.orientation.h}`;
+  }
+
   static random() {
     let pos1 = getRandomPosition();
     let pos2;
@@ -127,6 +168,9 @@ export default class Card {
 
   static match(cards) {
     if (cards.length < 2) {
+      return false;
+    }
+    if (!couldBeMatch(cards)) {
       return false;
     }
     let combos = generateRotationCombinations(cards);
