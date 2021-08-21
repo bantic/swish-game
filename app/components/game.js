@@ -46,7 +46,7 @@ export default class GameComponent extends Component {
     if (Card.match(this.selection)) {
       this.score += this.selection.length;
       this.clearSelection();
-      this.deal();
+      // this.deal();
     } else {
       this.score -= 1;
     }
