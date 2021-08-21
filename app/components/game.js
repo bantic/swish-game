@@ -8,9 +8,19 @@ import { findAllMatches } from '../utils/find-all-matches';
 export default class GameComponent extends Component {
   @tracked score = 0;
   @tracked cards = [];
-  @tracked matches;
   selection = [];
   MIN_CARDS = 16;
+
+  get matches() {
+    if (!this.cards) {
+      return [];
+    }
+    console.time('find-all-matches');
+    let matches = findAllMatches(this.cards);
+    console.timeEnd('find-all-matches');
+    return matches;
+    // this.matches = matches;
+  }
 
   constructor(owner, args) {
     super(owner, args);
@@ -34,10 +44,6 @@ export default class GameComponent extends Component {
           .fill(0)
           .map(() => Card.random()),
       ];
-      console.time('find-all-matches');
-      let matches = findAllMatches(this.cards);
-      console.timeEnd('find-all-matches');
-      this.matches = matches;
     }
   }
 
