@@ -8,6 +8,7 @@ import { findAllMatches } from '../utils/find-all-matches';
 export default class GameComponent extends Component {
   @tracked score = 0;
   @tracked cards = [];
+  @tracked showMatches = false;
   selection = [];
   MIN_CARDS = 16;
 

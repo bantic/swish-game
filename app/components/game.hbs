@@ -1,9 +1,14 @@
 <div class="controls">
   <h1>Score: {{this.score}}</h1>
   <button type="button" {{on "click" this.submit}}>Submit</button>
-  {{#each-in this.matches as |size matches|}}
-    {{size}}: {{matches.length}}
-  {{/each-in}}
+  {{#if this.showMatches}}
+    {{#each-in this.matches as |size matches|}}
+      {{size}}: {{matches.length}}
+    {{/each-in}}
+    <button type="button" {{on "click" (fn (mut this.showMatches) false)}}>Hide Matches</button>
+  {{else}}
+    <button type="button" {{on "click" (fn (mut this.showMatches) true)}}>Show Matches</button>
+  {{/if}}
 </div>
 <div class="game">
   {{#each this.cards as |card|}}
