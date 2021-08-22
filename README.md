@@ -7,8 +7,8 @@ A short introduction of this app could easily go here.
 
 - speed up match-finding, or move it off the main thread via web worker
 - better styling for the match UI
-- use custom `random` implementation that can be seeded so that there can be a daily challenge
 - make a daily challenge -- time-based? or generate a set of card with pre-determined number of 2,3,4 matches etc
+  - this is partially done -- the custom `random` is implemented, it just needs to be turned on
 - Add "clear" button (Manage selection state in game component to do so?)
 - Game controls:
   - Timing (?)
@@ -19,6 +19,7 @@ A short introduction of this app could easily go here.
 ### TODOs Done
 
 - Deploy via Vercel (just git push)
+- use custom `random` implementation that can be seeded so that there can be a daily challenge
 
 ## Prerequisites
 

@@ -1,4 +1,5 @@
 import { assert } from '@ember/debug';
+import { random } from './random';
 
 const MAX_COL = 3;
 const MAX_ROW = 4;
@@ -107,7 +108,7 @@ function isArrayContentsEqual(a, b) {
 // return int from min to max, inclusive
 function randInt(min, max) {
   let range = max - min;
-  let int = Math.floor(Math.random() * (1 + range)); // 0 up to range
+  let int = Math.floor(random() * (1 + range)); // 0 up to range
   return min + int;
 }
 
