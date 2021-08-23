@@ -1,5 +1,6 @@
 <div class="controls">
   <h1>Score: {{this.score}}</h1>
+  <Timer @isRunning={{this.isRunning}} />
   <button type="button" {{on "click" this.submit}}>Submit</button>
   {{#if this.showMatches}}
     {{#each-in this.matches as |size matches|}}

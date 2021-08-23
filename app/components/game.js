@@ -5,12 +5,23 @@ import { assert } from '@ember/debug';
 import { tracked } from '@glimmer/tracking';
 import { findAllMatches } from '../utils/find-all-matches';
 
+function sum(values) {
+  return values.reduce((acc, v) => acc + v, 0);
+}
+
 export default class GameComponent extends Component {
   @tracked score = 0;
   @tracked cards = [];
   @tracked showMatches = false;
   selection = [];
   MIN_CARDS = 16;
+
+  get isRunning() {
+    let matches = this.matches;
+    let s = sum(Object.values(matches).map((groups) => groups.length));
+    console.log('sum:', s);
+    return s > 0;
+  }
 
   get matches() {
     if (!this.cards) {
@@ -20,7 +31,6 @@ export default class GameComponent extends Component {
     let matches = findAllMatches(this.cards);
     console.timeEnd('find-all-matches');
     return matches;
-    // this.matches = matches;
   }
 
   constructor(owner, args) {
